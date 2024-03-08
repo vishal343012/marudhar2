@@ -1,0 +1,9 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/node_dev/
+    overwrite: true
+  - source: /
+    destination: /var/www/html/node_beta/
+    overwrite: true

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+body {
+  position: relative;
+  width: 21cm;  
+  height: 29.7cm; 
+  margin: 0 auto; 
+  color: #555555;
+  background: #FFFFFF; 
+  font-family: Arial, sans-serif; 
+  font-size: 14px; 
+  font-family: SourceSansPro;
+}
+@media print {
+    body{
+        width: 21cm;
+        height: 29.7cm;
+        margin: 30mm 45mm 30mm 45mm; 
+        /* change the margins as you want them to be. */
+   } 
+}
+      /* table,
+      th,
+      td {
+        border: 1.5px solid rgb(211, 211, 211, 0.5);
+        border-collapse: collapse;
+      }
+      .vl {
+        border-left: 1px solid grey;
+        height: max-content;
+      } */
+    </style>
+  </head>
+  <body>
+    <br />
+    &nbsp;5/28/22, 9:14 PM<br /><br />
+    <table class="table table-bordered" style="border: 0px;">
+      <tr scope="row">
+        <td>
+          <h3><b>HEYYYYYYYYY</b></h3>
+          10/1A, KALAKAR STREET , KOLKATA<br />
+          Alter - 1/3A, Mahendra Roy Lane, Kolkata - 46 <br />
+          GSTIN/UIN : 19AAJFM7393R1Z3<br />
+          State Name : West Bengal,<br />
+          Code : 19 <br />
+          Email:<a href="mailto:mmgranite@gmail.com">mmgranite@gmail.com</a>
+        </td>
+        <td>
+          <table class="table" style="border: 0px">
+            <tr style="border: 0px">
+              <td style="border: 0px">
+       Quotation No
+      <br /><b> {{products.qno}}</b>
+              </td>
+              {{#ifCond products.isQuotation '!==' true}}<td style="border: 0px">Sales Order No
+      <br /><b>{{products.sno}}</b></td>{{/ifCond}}
+            </tr>
+            <tr style="border: 0px">
+              <td style="border: 0px"
+              >
+                Quotation Order Date<br /><b>{{products.date}}</b>
+              </td>
+              {{#ifCond products.isQuotation '!==' true}}<td style="border: 0px">Sales order date
+      <br /><b>{{products.sdate}}</b></td>{{/ifCond}}
+            </tr>
+          </table>
+        </td>
+      </tr>
+      </table>
+      Customer Name : {{products.customer}}
+    <br/>
+      <table class="table">
+    <div class="item-list" style="margin-top: 5px">
+        
+      <thead>
+        <tr style="border-top: 1px solid black;">
+          <th scope="col" class="text-center">SL No.</th>
+          <th scope="col" class="text-center">Image</th>
+          <th scope="col" class="text-center">Description of Goods</th>
+          <th scope="col" class="text-center">Qty</th>
+          <th scope="col" class="text-center">Rate</th>
+          <th scope="col" class="text-center">Per</th>
+          <th scope="col" class="text-center">Disc%</th>
+          <th scope="col" class="text-center">Gst%</th>
+          <th scope="col" class="text-end">Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each products.prodlist}}
+        <tr scope="row">
+            <td style="text-align: center;">{{this.sno}}</td>
+            <td style="text-align: center;"></td>
+            <td style="text-align: center;">{{this.name}}</td>
+            <td style="text-align: center;">{{this.qty}} Pcs</td>
+            <td style="text-align: center;">₹ {{this.mrp}}</td>
+            <td style="text-align: center;">{{this.per}}</td>
+            <td style="text-align: center;">₹ {{this.disc_value}}.00 <br> ({{this.disc}}%)</td>
+            <td style="text-align: center;">₹ {{this.gst_value}}.00 <br> ({{this.gst}}%)</td>
+            <td class="text-end">₹ {{this.prprice}}</td>
+        </tr>
+        {{/each}}
+        
+        <tr scope="row">
+            <td colspan="8" style="padding-right: 15px;"><div><br></div><div style="text-align: end;margin-bottom: 2px;"><b><ul class="list-unstyled">{{#each products.quotationCharge}}<li>{{this.charges}}</li>{{/each}}</ul></b></div><div style="text-align: end;margin-bottom: 2px;">Total</div></td>
+            
+            <td><div class="text-end" style="margin-bottom: 2px;"><b>₹ {{products.finalAmount}}</b></div><div style="text-align: end;margin-bottom: 2px;"><ul class="list-unstyled">{{#each products.quotationCharge}}<li>{{this.charge_type}} ₹ {{this.amount}}</li>{{/each}}</ul></div><div style="text-align: end;margin-bottom: 2px;"><b>₹ {{products.totalAmount}}</b></div></td>
+        </tr>
+        <!-- <div style="text-align: end;margin-bottom: 2px;"><b>CGST</b></div><div style="text-align: end;margin-bottom: 2px;"><b>SGST</b></div> -->
+        <!-- <div style="text-align: end;margin-bottom: 2px;">₹ {{products.sgst}}</div><div style="text-align: end;margin-bottom: 2px;">₹ {{products.cgst}}</div> -->
+<tr scope="row" style="border: 0px;"><td style="border: 0px;"><br/></td></tr>
+</tbody>
+</div></table>
+        <table class="table table-bordered">
+      <tr scope="row"><td colspan="4" ><div style="letter-spacing:1px;font-family: sans-serif;"> <u><b>Terms & conditions </b></u></div><br><div style="border-bottom:1px solid lightgrey;"> 1. Please send two copy of your invoice.</div><br><div style="border-bottom:1px solid lightgrey;"> 2. Enter the order in accordance with the
+prices, terms, delivary method and
+specification listed.</div> <br><div > 3. Please notify us immedately if you are
+unable to ship as specified</div></td><td colspan="4"></td></tr>
+    <tr scope="row"><td colspan="4"><u><b> Declaration</b></u><br>All Disputes Subject to Kolkata Jurisdiction</td><td colspan="4"><b>For Marudhar Marble & Granite<br>Authorised Signatory</b>
+
+</td></tr>
+        
+    </div>
+    </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+ version: 0.2
+ phases:
+  pre_build:
+    commands:
+      - npm cache clean --force
+      - npm install --force > npm_install_log.txt 2>&1 || cat npm_install_log.txt
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling
+      - npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+# Include only the files required for your application to run.
+ artifacts:
+  files:
+    - build/**/*
+  discard-paths: no

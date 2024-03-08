@@ -1,0 +1,146 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+body {
+  position: relative;
+  width: 19cm;  
+  height: auto;
+  margin: 0 auto; 
+  color: #555555;
+  background: #FFFFFF; 
+  font-family: Arial, sans-serif; 
+  font-size: 10px; 
+  font-family: SourceSansPro;
+}
+.avoid{
+  break-inside: avoid;
+}
+/* @media print {
+  table {
+     break-inside: avoid;
+  }
+} */
+      /* table,
+      th,
+      td {
+        border: 1.5px solid rgb(211, 211, 211, 0.5);
+        border-collapse: collapse;
+      }
+      .vl {
+        border-left: 1px solid grey;
+        height: max-content;
+      } */
+    </style>
+  </head>
+  <body>
+    <br />
+    &nbsp;5/28/22, 9:14 PM<br /><br />
+    <table class="table table-bordered" style="border: 0px;">
+      <tr scope="row">
+        <td>
+          <h3><b>Marudhar Marble and Granite</b></h3>
+          10/1A, KALAKAR STREET , KOLKATA<br />
+          Alter - 1/3A, Mahendra Roy Lane, Kolkata - 46 <br />
+          GSTIN/UIN : 19AAJFM7393R1Z3<br />
+          State Name : West Bengal,<br />
+          Code : 19 <br />
+          Email:<a href="mailto:mmgranite@gmail.com">mmgranite@gmail.com</a>
+        </td>
+        <td>
+          <table class="table" style="border: 0px">
+            <tr style="border: 0px">
+              <!-- <td style="border: 0px">
+                <%= console.log(isQuotation);%>
+       Quotation No
+      <br /><b> <%=qno%></b>
+              </td> -->
+              <% if(isQuotation!==true){%><td style="border: 0px">Delivery No
+      <br /><b><%= sno %></b></td><% } %>
+     
+            </tr>
+            <tr style="border: 0px">
+              <!-- <td style="border: 0px"
+              >
+                Quotation Order Date<br /><b><%=date%></b>
+              </td> -->
+              <% if(isQuotation!==true){%><td style="border: 0px">Delivery date
+      <br /><b><%= sdate%></b></td><% } %>
+      
+            </tr>
+          </table>
+        </td>
+      </tr>
+      </table>
+    <!-- new address -->
+
+    <table class="table"><thead><tr><th scope="col"> Customer Name : </th><th><%= customer%></th></tr></thead><tbody><tr><td>Address : </td><td><% if(customerDetails.street){ %><%= customerDetails.street %><% } %><% if(customerDetails.area){ %>, <%= customerDetails.area %><% } %><% if(customerDetails.city){ %>, <%= customerDetails.city %><% } %><% if(customerDetails.state){ %>, <%= customerDetails.state %><% } %><% if(customerDetails.pin){ %> - <%= customerDetails.pin %><% } %></td></tr><tr><td>Mobile No :</td><td><%= mobileNo%></td></tr></tbody></table>   
+      
+      <table class="table">
+    <div class="item-list" style="margin-top: 5px">
+        
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">SL No.</th>
+          <th scope="col" class="text-center">Image</th>
+          <th scope="col" class="text-center">Description of Goods</th>
+          <th scope="col" class="text-center">Showroom/Warehouse</th>
+          <th scope="col" class="text-center">Salesman Name</th>
+          <th scope="col" class="text-center">Qty</th>
+          
+          <!-- <th scope="col" class="text-center">Rate</th>
+          <th scope="col" class="text-center">Per</th>
+          <th scope="col" class="text-center">Disc%</th>
+          <th scope="col" class="text-center">Gst%</th>
+          <th scope="col" class="text-end">Amount</th> -->
+        </tr>
+        </thead>
+        <tbody>
+          <% prodlist.forEach((product)=>{ %>
+            <tr scope="row">
+              <td style="text-align: center;"><%= product.sno %></td>
+              <!-- <%= console.log(product.img)%> -->
+              <td style="text-align: center;"><% if(product.img.length>0){%><img style="    height: 50px;
+      width: 50px;" src="https://s3.eu-west-1.amazonaws.com/document.marudhar.app/<%= encodeURI(product.img) %>" alt="image"/><% } %></td>
+              <td style="text-align: center;width: 80px;"><%= product.name %></td>
+              <td style="text-align: center;width: 80px;"><%= product.wname%></td>
+              <td style="text-align: center;width: 80px;"><%= sman%></td>              
+              <td style="text-align: center;"><%= product.qty %> Pcs</td>
+              <!-- <td class="text-end">₹ <%= product.mrp %></td>
+              <td class="text-end"><%= product.per %></td>
+              <td class="text-end">₹ <%= product.disc_value %> <br> (<%= product.disc %>%)</td>
+              <td class="text-end">₹ <%= product.gst_value %> <br> (<%=product.gst%>%)</td>
+              <td class="text-end">₹ <%= product.prprice %></td> -->
+          </tr>
+        <% }) %>
+        
+
+        <!-- <tr scope="row">
+            <td colspan="7" style="padding-right: 15px;"><div><br></div><div style="text-align: end;margin-bottom: 2px;"><b><ul class="list-unstyled"><% quotationCharge.forEach((quotation)=>{ %><li><%= quotation.charges %> (<%= quotation.charge_type %>)</li> <% }) %> </ul></b></div><div style="text-align: end;margin-bottom: 2px;">Total</div></td>
+            
+            <td colspan="2"><div class="text-end" style="margin-bottom: 2px;"><b>₹ <%= finalAmount %></b></div><div style="text-align: end;margin-bottom: 2px;"><ul class="list-unstyled"><% quotationCharge.forEach((quotation)=>{  %><li> ₹ <%= quotation.amount %></li><% }) %></ul></div><div style="text-align: end;margin-bottom: 2px;"><b>₹ <%= totalAmount %></b></div></td>
+        </tr> -->
+        <!-- <div style="text-align: end;margin-bottom: 2px;"><b>CGST</b></div><div style="text-align: end;margin-bottom: 2px;"><b>SGST</b></div> -->
+        <!-- <div style="text-align: end;margin-bottom: 2px;">₹ {{products.sgst}}</div><div style="text-align: end;margin-bottom: 2px;">₹ {{products.cgst}}</div> -->
+<tr scope="row" style="border: 0px;"><td style="border: 0px;"><br/></td></tr>
+</tbody>
+</div></table>
+        <table class="avoid table table-bordered">
+      <tr scope="row"><td colspan="4" ><div style="letter-spacing:1px;font-family: sans-serif;" class="avoid"> <u><b>Terms & conditions </b></u></div><br><div class="avoid" style="border-bottom:1px solid lightgrey;"> 1. Please send two copy of your invoice.</div><br><div class="avoid" style="border-bottom:1px solid lightgrey;"> 2. Enter the order in accordance with the
+prices, terms, delivery method and
+specification listed.</div> <br><div > 3. Please notify us immediately if you are
+unable to ship as specified</div></td><td colspan="4"><div class="border-bottom py-1 text-start"><b>For Marudhar Marble & Granite</b></div></td></tr>
+    <tr scope="row"><td colspan="4"><u><b> Declaration</b></u><br>All Disputes Subject to Kolkata Jurisdiction</td><td colspan="4"><b>Authorised Signatory</b>
+
+</td></tr>
+        
+    </div>
+    </tbody>
+    </table>
+  </body>
+</html>
